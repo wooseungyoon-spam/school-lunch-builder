@@ -1,88 +1,75 @@
-# ✨ AI Resume & Portfolio Builder
+# 🍱 AI 학교 급식 예측 & 평가 리포트 웹앱 (School Lunch Review Builder)
 
-> 사용자의 정보(이름, 지원 직무, 경력, 프로젝트, Tone)를 바탕으로 Google Gemini AI가 이력서와 포트폴리오 초안을 자동으로 생성해 주는 웹 애플리케이션입니다.
+> 오늘 먹은 학교 급식 메뉴와 한줄평을 입력하면 Google Gemini AI가 재치 있는 유머 요약(Prompt A) 또는 영양사 선생님의 전문 영양 분석(Prompt B) 리포트를 자동으로 생성해 주는 Flask 기반 웹 애플리케이션입니다.
 
 ---
 
 ## 📌 주요 기능 (Key Features)
 
-1. **사용자 정보 입력 폼**: 이름, 지원 직무, 상세 경력 사항, 주요 프로젝트, 톤앤매너 설정
+1. **급식 정보 입력 폼**: 학년/반, 오늘 날짜, 급식 메뉴, 나만의 한줄평/소감 입력
 2. **다양한 생성 방식 (프롬프트 선택)**:
-   - **Prompt A (일반 모드)**: 정갈하고 가독성 높은 표준 이력서 & 포트폴리오
-   - **Prompt B (전문가 STAR 모드)**: 수치, 성과 및 문제 해결 과정 중심의 임팩트 있는 전문 문서
-3. **Google Gemini API 연동**: 최신 `gemini-3.1-flash-lite` 모델 활용
+   - **🎉 Prompt A (유머 만발)**: 3줄 유머 요약, Best vs 아쉬운 메뉴 선정, AI 찰떡 답글, 급식 만족도 등급
+   - **👩‍🍳 Prompt B (영양사 톤)**: 탄단지 영양 균형 분석, 영양사 피드백, 추천 저녁/간식 팁, 종합 평점
+3. **Google Gemini API 연동**: 최신 `gemini-3.1-flash-lite` AI 모델 활용
 4. **결과 활용 기능**:
-   - **📋 원클릭 결과 복사**: 생성된 마크다운 결과를 클립보드로 직접 복사
-   - **📥 Markdown 파일 다운로드**: `홍길동_이력서_포트폴리오.md` 파일 저장
+   - **📋 원클릭 결과 복사**: 생성된 리포트 마크다운 결과를 클립보드로 복사
+   - **📥 Markdown 파일 다운로드**: `급식_평가_리포트_날짜.md` 파일 저장
 5. **안전한 보안 관리**: `.env` 파일과 `.gitignore`를 활용한 API Key 유출 방지
-6. **유효성 검사 및 에러 처리**: 프론트엔드와 백엔드 양방향 입력값 검증 및 친절한 에러 안내
-7. **모던 UX/UI**: 다크 모드 테마, 동적 로딩 스피너, 실시간 마크다운 HTML 렌더링
+6. **유효성 검사 및 에러 처리**: 프런트엔드와 백엔드 양방향 입력값 검증 및 상세 로깅
+7. **모던 UX/UI**: 상큼한 급식 테마 디자인, 로딩 스피너 애니메이션, 실시간 마크다운 HTML 렌더링
 
 ---
 
-## 📁 프로젝트 파일 구조 (Directory Structure)
+## 📁 프로젝트 파일 구조 (File Structure)
 
 ```text
-resume-builder/
-├── app.py                     # Flask 백엔드 서버 (Gemini API 호출 및 라우팅)
-├── requirements.txt           # 파이썬 패키지 의존성 목록
-├── .env                       # 비밀 Gemini API Key 저장 파일 (Git 제외)
-├── .env.example               # 환경변수 예시 템플릿
-├── .gitignore                 # Git 관리 제외 파일 지정 목록
-├── README.md                  # 프로젝트 설명 문서
-├── venv/                      # 독립된 파이썬 가상환경 폴더
+school-lunch-builder/
+├── app.py                  # Flask 백엔드 서버 & Gemini API 호출 로직
+├── requirements.txt        # 필요한 Python 패키지 목록
+├── .env                    # 비밀 Gemini API Key 보관 (Git 제외)
+├── .env.example            # 환경변수 예시 템플릿
+├── .gitignore              # Git 무시 파일 목록 (.env, venv 등)
+├── README.md               # 프로젝트 안내 문서
 ├── templates/
-│   └── index.html             # 메인 입력 폼 및 결과 표시 웹 화면
+│   └── index.html          # 급식 리뷰 메인 HTML 화면
 └── static/
     ├── css/
-    │   └── style.css          # 다크 테마 및 반응형 레이아웃 CSS
+    │   └── style.css       # 급식 앱 디자인 스타일시트
     └── js/
-        └── app.js             # API 통신, 로딩, 복사/다운로드 처리 JS
+        └── app.js          # 비동기 API 요청 및 UI 제어 JavaScript
 ```
 
 ---
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
-- **Backend**: Python 3.14, Flask 3.0.3, `google-genai` SDK, `python-dotenv`
-- **Frontend**: HTML5, Vanilla CSS3 (Custom Dark Theme), Vanilla JavaScript (ES6+)
-- **AI Model**: Google Gemini (`gemini-3.1-flash-lite`)
-- **Libraries**: Marked.js (Markdown HTML Parsing)
-- **Version Control**: Git
+- **Backend**: Python 3.14+, Flask, python-dotenv
+- **AI Engine**: Google Gemini API (`google-genai` SDK, `gemini-3.1-flash-lite`)
+- **Frontend**: HTML5, Vanilla CSS3, JavaScript (ES6+), Marked.js
 
 ---
 
 ## 🚀 실행 방법 (Getting Started)
 
-### 1. 가상환경 활성화 (PowerShell)
-```powershell
-Set-Location "C:\AI-study\resume-builder"
-.\venv\Scripts\Activate.ps1
-```
+1. **가상환경 생성 및 활성화**:
+   ```powershell
+   py -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
-### 2. 필수 패키지 설치 (최초 1회)
-```powershell
-py -m pip install -r requirements.txt
-```
+2. **필요 패키지 설치**:
+   ```powershell
+   py -m pip install -r requirements.txt
+   ```
 
-### 3. `.env` 파일 설정
-`resume-builder` 루트 폴더의 `.env` 파일에 [Google AI Studio](https://aistudio.google.com/)에서 발급받은 실제 API 키를 입력합니다.
-```env
-GEMINI_API_KEY=your_actual_gemini_api_key_here
-FLASK_SECRET_KEY=dev_secret_key_987654321
-```
+3. **환경변수 설정 (`.env`)**:
+   - `.env` 파일을 생성하고 발급받은 Gemini API Key를 입력합니다.
+   ```text
+   GEMINI_API_KEY=your_actual_gemini_api_key
+   ```
 
-### 4. 서버 구동
-```powershell
-py app.py
-```
-
-### 5. 웹 브라우저 접속
-주소창에 아래 주소를 입력하여 접속합니다.
-- 👉 **`http://127.0.0.1:5000`**
-
----
-
-## 📝 라이선스 (License)
-
-This project is created for educational purposes.
+4. **Flask 웹 서버 실행**:
+   ```powershell
+   py app.py
+   ```
+   - 브라우저에서 `http://127.0.0.1:5000` 으로 접속합니다.
