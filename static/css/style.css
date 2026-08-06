@@ -1,0 +1,271 @@
+ /* ==========================================
+       AI 학교 급식 리뷰 앱 - 디자인 스타일시트
+       ========================================== */
+
+    /* 1. 디자인 변수 (색상, 폰트, 여백 등) */
+    :root {
+        --primary-color: #ff6b6b;        /* 메인 상큼한 급식 레드/오렌지 */
+        --primary-hover: #ee5253;        /* 버튼 호버 색상 */
+        --bg-color: #f7f9fc;             /* 전체 배경색 */
+        --card-bg: #ffffff;              /* 카드 배경색 */
+        --text-color: #2d3436;           /* 기본 글자색 */
+        --sub-text: #636e72;             /* 부제목/설명 글자색 */
+        --border-color: #dfe6e9;         /* 테두리 색상 */
+        --success-color: #10ac84;        /* 다운로드 성공 green */
+        --error-color: #ff4757;          /* 경고 메시지 red */
+        --radius: 16px;                  /* 모서리 둥글기 */
+        --shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* 그림자 효과 */
+    }
+
+    /* 2. 기본 초기화 및 본문 스타일 */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 40px 20px;
+    }
+
+    /* 3. 전체 레이아웃 구획 */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+    }
+
+    .header .subtitle {
+        color: var(--sub-text);
+        font-size: 1rem;
+    }
+
+    /* 4. 공통 카드 스타일 */
+    .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 30px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        color: var(--text-color);
+        border-bottom: 2px solid var(--bg-color);
+        padding-bottom: 10px;
+    }
+
+    /* 5. 폼 입력 요소 스타일 */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text-color);
+    }
+
+    .form-group .required {
+        color: var(--error-color);
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1.5px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+    }
+
+    /* 라디오 버튼 카스텀 라벨 */
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .radio-label {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        border: 1.5px solid var(--border-color);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .radio-label:hover {
+        background-color: #fff5f5;
+        border-color: var(--primary-color);
+    }
+
+    .radio-label input[type="radio"] {
+        margin-right: 12px;
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary-color);
+    }
+
+    /* 6. 버튼 스타일 */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 24px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+        width: 100%;
+        background-color: var(--primary-color);
+        color: white;
+        box-shadow: 0 4px 14px rgba(255, 107, 107, 0.4);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: #0984e3;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #74b9ff;
+    }
+
+    .btn-success {
+        background-color: var(--success-color);
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #55efc4;
+    }
+
+    /* 7. 로딩 스피너 애니메이션 */
+    .loading-card {
+        text-align: center;
+        padding: 40px;
+    }
+
+    .spinner {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #ffeaa7;
+        border-top: 5px solid var(--primary-color);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+        font-weight: 600;
+        color: var(--sub-text);
+    }
+
+    /* 8. 결과 표시창 및 버튼 배치 */
+    .result-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: var(--border-color);
+        margin: 15px 0 20px;
+    }
+
+    /* 9. Markdown 결과 글자 스타일 */
+    .markdown-body {
+        background: #fafafa;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        line-height: 1.8;
+    }
+
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+
+    .markdown-body ul, .markdown-body ol {
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    /* 10. 오류 메시지 스타일 */
+    .error-message {
+        background-color: #ff7675;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
+
+    /* 유틸리티 클래스 */
+    .hidden {
+        display: none !important;
+    }
+
+    .footer {
+        text-align: center;
+        color: var(--sub-text);
+        font-size: 0.85rem;
+        margin-top: 20px;
+    }

@@ -1,0 +1,101 @@
+  <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>🍱 AI 학교 급식 평가 & 리뷰 리포트</title>
+        <!-- Google Fonts (Pretendard) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Marked.js (Markdown 파싱 도구) -->
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+    </head>
+    <body>
+        <div class="container">
+            <!-- 헤더 영역 -->
+            <header class="header">
+                <h1>🍱 AI 학교 급식 리뷰 & 평가 리포트</h1>
+                <p class="subtitle">오늘 먹은 급식 메뉴와 한줄평을 작성해 주시면 AI가 재치 있는 분석 리포트를 생성해 줍니다!</p>
+            </header>
+
+            <!-- 메인 콘텐츠 영역 -->
+            <main class="main-content">
+                <!-- 1. 급식 정보 입력 폼 -->
+                <section class="card form-card">
+                    <h2>📝 급식 정보 입력</h2>
+                    <form id="lunchForm">
+                        <div class="form-group">
+                            <label for="gradeClass">학년 / 반 <span class="required">*</span></label>
+                            <input type="text" id="gradeClass" name="grade_class" placeholder="예: 3학년 2반" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">오늘 날짜 <span class="required">*</span></label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="menu">오늘의 급식 메뉴 <span class="required">*</span></label>
+                            <textarea id="menu" name="menu" rows="3" placeholder="예: 흑미밥, 쇠고기미역국, 떡갈비구이, 배추김치, 멜론"
+  required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment">나만의 한줄평 / 소감</label>
+                            <input type="text" id="comment" name="comment" placeholder="예: 떡갈비 양념이 대박이었음! 국물도 완샷함">
+                        </div>
+
+                        <div class="form-group">
+                            <label>AI 리포트 스타일 선택 <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="prompt_type" value="A" checked>
+                                    <span>🎉 Prompt A: 유머 만발! 재미있는 급식 리뷰 요약</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="prompt_type" value="B">
+                                    <span>👩‍🍳 Prompt B: 영양사 선생님의 전문 영양 분석</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 오류 메시지 표시 영역 -->
+                        <div id="errorMessage" class="error-message hidden"></div>
+
+                        <button type="submit" id="submitBtn" class="btn btn-primary">
+                            <span>✨ AI 급식 리포트 생성하기</span>
+                        </button>
+                    </form>
+                </section>
+
+                <!-- 2. 로딩 애니메이션 영역 -->
+                <section id="loadingArea" class="card loading-card hidden">
+                    <div class="spinner"></div>
+                    <p class="loading-text">🤖 AI가 급식 메뉴를 맛있게 분석 중입니다... 잠시만 기다려 주세요!</p>
+                </section>
+
+                <!-- 3. 생성 결과 표시 영역 -->
+                <section id="resultArea" class="card result-card hidden">
+                    <div class="result-header">
+                        <h2>📋 AI 급식 평가 리포트</h2>포
+                        <div class="action-buttons">
+                            <button id="copyBtn" class="btn btn-secondary">📋 결과 복사</button>
+                            <button id="downloadBtn" class="btn btn-success">📥 Markdown 다운로드</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="resultContent" class="markdown-body"></div>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <p>© 2026 AI School Lunch Builder. Built with Flask & Gemini API</p>
+            </footer>
+        </div>
+
+        <!-- JavaScript 파일 연동 -->
+        <script src="{{ url_for('static', filename='js/app.js') }}?v=2"></script>
+    </body>
+    </html>
